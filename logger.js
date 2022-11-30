@@ -31,7 +31,7 @@ function convertArrayOfObjectsToStringMatrix(data, addIndex = false) {
       }
 
       // Making it look good with colors
-      return util.inspect(valueToFormat, undefined, undefined, colorEnabled);
+      return util.inspect(valueToFormat, undefined, undefined, true);
     })
   );
 
@@ -47,7 +47,13 @@ function logTable(data) {
 
   table.push(...matrix);
 
-  console.log(stripColors(table.toString()));
+  let tableStr = table.toString();
+
+  if(!colorEnabled) {
+   tableStr = stripColors(tableStr); 
+  }
+
+  console.log(tableStr);
 }
 
 module.exports = {
