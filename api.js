@@ -50,6 +50,9 @@ signals.forEach(function (sig) {
     if (sig === "SIGINT") {
       exitCode = args[1];
     }
+    if (sig === "exit") {
+      exitCode = args[0];
+    }
 
     cleanupBeforeExit().finally(() => {
       process.exit(exitCode);
