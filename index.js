@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 import { envs as ALL_ENVS } from "./all-envs.js";
 import { runQueryInAllEnvs, runQuery } from "./api.js";
 import { logTable, logError, logWarning } from "./logger/index.js";
@@ -14,18 +14,20 @@ const query = process.argv[2] || "select * from deprecated_alert_types";
 const env = getEnv();
 
 (env
-  ? runQuery(env, query).then((result) => printResultOfSingleEnv(env, result))
+  ? runQuery(env, query).then((result) => printResultOfSingleEnv(result))
   : runQueryInAllEnvs(query).then((results) =>
       results.map(({ env: queriedEnv, result }) => {
-        printResultOfSingleEnv(queriedEnv, result);
+        printResultOfSingleEnv(result, queriedEnv);
       })
     )
 ).catch((error) => console.error("Failed with", error));
 
-function printResultOfSingleEnv(queriedEnv, result) {
-  console.log("");
-  console.log(queriedEnv);
-  console.log("--------------------");
+function printResultOfSingleEnv(result, queriedEnv) {
+  if (queriedEnv) {
+    console.log("");
+    console.log(queriedEnv);
+    console.log("--------------------");
+  }
 
   logTable(result, process.env.TABLE_TYPE);
 }
@@ -41,7 +43,7 @@ function getEnv() {
   }
 
   // Empty line before
-  console.log('');
+  console.log("");
   logWarning(
     `The requested env ('${selectedEnv}') does not exist, possible values are: ${ALL_ENVS.map(
       (possibleEnv) => `"${possibleEnv}"`
@@ -69,9 +71,7 @@ function getEnv() {
     return selectedEnv;
   }
 
-  logError(
-    `was not able to guess the environment wanted, exiting`
-  );
+  logError(`was not able to guess the environment wanted, exiting`);
 
   process.exit(1);
 }
