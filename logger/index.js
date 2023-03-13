@@ -1,7 +1,14 @@
-const debug = require("debug");
-const { logTable } = require("./table");
+import debug from "debug";
+import chalk from "chalk";
+export { logTable } from "./table/index.js";
 
-module.exports = {
-  logger: debug("app"),
-  logTable,
-};
+export function logError(message, ...rest) {
+  console.log(chalk.red(message), ...rest);
+}
+
+export function logWarning(message, ...rest) {
+  console.log(chalk.yellow(message), ...rest);
+}
+
+
+export const logger = debug("app");

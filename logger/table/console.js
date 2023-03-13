@@ -1,6 +1,6 @@
-const Table = require("cli-table3");
+import Table from "cli-table3";
 
-function consoleTable(head, matrix) {
+export function consoleTable(head, matrix) {
   // Not used console.table as it output '[Object]' on large nested objects
   const table = new Table({ head: head });
 
@@ -9,6 +9,3 @@ function consoleTable(head, matrix) {
   return table.toString();
 }
 
-module.exports = {
-  consoleTable,
-};

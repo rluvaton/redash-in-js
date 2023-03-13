@@ -1,9 +1,10 @@
-const { sleep } = require("./utils");
-const { envs, US_1, US_2, EU_1, EU_2 } = require("./all-envs");
-const envConfig = require('./env');
+import { sleep } from "./utils.js";
+import { envs, US_1, US_2, EU_1, EU_2 } from "./all-envs.js";
+import envConfig from './env.js';
 
-const log = require("./logger").logger.extend("api");
+import {logger} from './logger/index.js';
 
+const log = logger.extend("api");
 const cleanupLogger = log.extend("cleanup");
 
 const ENVS = {
@@ -293,7 +294,7 @@ async function getQueryResult(env, resultId, { logger = log } = {}) {
   return data?.query_result?.data?.rows;
 }
 
-async function runQuery(env, query, { applyAutoLimit = true } = {}) {
+export async function runQuery(env, query, { applyAutoLimit = true } = {}) {
   let logger = log.extend(env);
 
   logger(`runQuery running query %O`, {
@@ -321,7 +322,7 @@ async function runQuery(env, query, { applyAutoLimit = true } = {}) {
   return result;
 }
 
-async function runQueryInAllEnvs(
+export async function runQueryInAllEnvs(
   query,
   { applyAutoLimit = true, ...restOfOptions } = {}
 ) {
@@ -335,9 +336,3 @@ async function runQueryInAllEnvs(
     }))
   );
 }
-
-module.exports = {
-  runQuery,
-  runQueryInAllEnvs,
-  ENVS: envs,
-};

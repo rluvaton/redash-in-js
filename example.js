@@ -1,4 +1,5 @@
-const { ENVS, runQuery } = require("./api");
+import { runQuery } from "./api.js";
+import { envs as ENVS } from "./all-envs.js";
 
 async function run() {
   await Promise.all(

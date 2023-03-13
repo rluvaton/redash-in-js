@@ -1,4 +1,4 @@
-const { stripColors } = require('../helpers');
+import { stripColors } from '../helpers.js';
 
 
 /**
@@ -34,7 +34,7 @@ function padRow(row, maxWidthForEachColumn) {
  * @param {string[][]} matrix
  * @returns {string} Markdown table
  */
-function markdownTable(head, matrix) {
+export function markdownTable(head, matrix) {
   const maxWidthForEachColumn = calculateMaxWidthPerColumn([head].concat(matrix));
 
   head = padRow(head, maxWidthForEachColumn);
@@ -46,7 +46,3 @@ function markdownTable(head, matrix) {
 
   return table;
 }
-
-module.exports = {
-  markdownTable,
-};

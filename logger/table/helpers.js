@@ -1,7 +1,7 @@
-const { colorEnabled, disableValueTrunk } = require('../helpers');
-const util = require('util');
+import { colorEnabled, disableValueTrunk } from '../helpers.js';
+import util from 'util';
 
-function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColors = colorEnabled } = {}) {
+export function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColors = colorEnabled } = {}) {
   const uniqueKeys = new Set();
 
   data.forEach((row) => {
@@ -38,7 +38,3 @@ function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColor
 
   return { head: keys, matrix: dataAsArray };
 }
-
-module.exports = {
-  convertArrayOfObjectsToStringMatrix,
-};

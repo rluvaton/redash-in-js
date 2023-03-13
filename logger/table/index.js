@@ -1,13 +1,13 @@
-const { consoleTable } = require("./console");
-const { markdownTable } = require("./markdown");
-const { convertArrayOfObjectsToStringMatrix } = require('./helpers');
+import { consoleTable } from "./console.js";
+import { markdownTable } from "./markdown.js";
+import { convertArrayOfObjectsToStringMatrix } from './helpers.js';
 
 /**
  *
  * @param {any[]} data
  * @param {'console' | 'markdown'} type
  */
-function logTable(data, type = "console") {
+export function logTable(data, type = "console") {
   const { head, matrix } = convertArrayOfObjectsToStringMatrix(data);
 
   if (!head.length) {
@@ -36,7 +36,3 @@ function logTable(data, type = "console") {
 
   console.log(table);
 }
-
-module.exports = {
-  logTable,
-};

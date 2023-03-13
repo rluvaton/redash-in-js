@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
@@ -10,6 +11,7 @@
   "author": "Raz Luvaton",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.2.0",
     "cli-table3": "^0.6.3",
     "debug": "^4.3.4",
     "dotenv": "^16.0.3",

@@ -1,4 +1,4 @@
-const { US_1, US_2, EU_1, EU_2 } = require("./all-envs");
+import { US_1, US_2, EU_1, EU_2 } from "./all-envs.js";
 
 // TODO - rename this to file to env.js
 
