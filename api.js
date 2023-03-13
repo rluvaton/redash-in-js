@@ -239,7 +239,7 @@ async function getQueryJobResultId(env, jobId, { logger = log } = {}) {
 }
 
 async function waitForQueryJobResultId(env, jobId, { logger = log } = {}) {
-  let maxTries = 30;
+  let maxTries = Infinity;
   let currentTry = 1;
   logger(`waitForQueryJobResultIdWaiting for query job result id`);
 

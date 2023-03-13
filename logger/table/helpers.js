@@ -1,4 +1,4 @@
-const { colorEnabled } = require('../helpers');
+const { colorEnabled, disableValueTrunk } = require('../helpers');
 const util = require('util');
 
 function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColors = colorEnabled } = {}) {
@@ -14,6 +14,15 @@ function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColor
     keys.unshift("(I)");
   }
 
+  const inspectOptions = {
+    colors: withColors,
+  };
+
+  if(disableValueTrunk) {
+    // Not setting it to undefined in case disableValueTrunk is false as it will still print it all
+    inspectOptions.depth = Infinity;
+  }
+
   const dataAsArray = data.map((row, index) =>
     keys.map((key, keyIndex) => {
       let valueToFormat = row[key];
@@ -23,7 +32,7 @@ function convertArrayOfObjectsToStringMatrix(data, { addIndex = false, withColor
       }
 
       // Making it look good with colors
-      return util.inspect(valueToFormat, undefined, undefined, withColors);
+      return util.inspect(valueToFormat, inspectOptions);
     })
   );
 

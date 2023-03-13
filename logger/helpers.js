@@ -5,5 +5,6 @@ function stripColors(str) {
 
 module.exports = {
   colorEnabled: process.env.COLORS_DISABLED == null,
+  disableValueTrunk: process.env.VALUE_TRUNK_DISABLED == 'true',
   stripColors,
 };
