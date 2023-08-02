@@ -1,4 +1,4 @@
-import { US_1, US_2, EU_1, EU_2 } from "./all-envs.js";
+import { US_1, US_2, EU_3, EU_2 } from "./all-envs.js";
 
 // TODO - rename this to file to env.js
 
@@ -17,11 +17,11 @@ module.exports = {
     dataSourceName: "US2 Replica",
     dataSourceId: 4,
   },
-  [EU_1]: {
+  [EU_3]: {
     baseUrl: "https://redash3.com",
     apiKey: "<from-profile>",
 
-    dataSourceName: "EU1 Replica",
+    dataSourceName: "EU3 Replica",
     dataSourceId: 1,
   },
   [EU_2]: {

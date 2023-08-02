@@ -1,5 +1,5 @@
 import { sleep } from "./utils.js";
-import { envs, US_1, US_2, EU_1, EU_2 } from "./all-envs.js";
+import { envs, US_1, US_2, EU_3, EU_2 } from "./all-envs.js";
 import envConfig from './env.js';
 
 import {logger} from './logger/index.js';
@@ -16,8 +16,8 @@ const ENVS = {
     ...envConfig[US_2],
     currentlyRunningJobs: new Set(),
   },
-  [EU_1]: {
-    ...envConfig[EU_1],
+  [EU_3]: {
+    ...envConfig[EU_3],
     currentlyRunningJobs: new Set(),
   },
   [EU_2]: {
@@ -102,8 +102,8 @@ async function cleanupBeforeExit() {
       runningQueries: {
         [US_1]: ENVS[US_1].currentlyRunningJobs,
         [US_2]: ENVS[US_2].currentlyRunningJobs,
-        [EU_1]: ENVS[EU_1].currentlyRunningJobs,
         [EU_2]: ENVS[EU_2].currentlyRunningJobs,
+        [EU_3]: ENVS[EU_3].currentlyRunningJobs,
       },
     });
   }
@@ -300,6 +300,7 @@ export async function runQuery(env, query, { applyAutoLimit = true } = {}) {
   logger(`runQuery running query %O`, {
     query,
   });
+  applyAutoLimit = false;
 
   const jobId = await createQueryJob(env, query, {
     applyAutoLimit,
